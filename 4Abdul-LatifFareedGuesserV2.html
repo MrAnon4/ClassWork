@@ -1,0 +1,434 @@
+<style>
+body{
+background-color: aqua;
+margin: 30px 30px;
+}
+#box{
+background-color: beige;
+padding-top: 10px;
+padding-bottom: 150px;
+padding-right: 20px;
+padding-left: 20px;
+margin: auto;
+margin-bottom: 10px;
+text-align: center;
+border: solid Midnightblue;
+}
+#Num{
+text-align: center;
+padding-left: 650px;
+padding-right: 650px;
+margin: auto;
+}
+a:link{
+	
+	color: #000;
+	font-weight: 700;
+	text-decoration: none;
+	
+}a:visited{
+	
+	color: navy;
+	text-decoration: line-through;
+	
+}a:hover{
+	
+	color: royalblue;
+	text-decoration: underline;
+	
+}
+</style>
+
+<div id= "box">
+<p id= "dt" style= "text-align:right">Date</p>
+<p id= "T" style= "text-align:right">Time</p>
+<h1 id= "score">Guess a #1-10</h1>
+<h2 id= "Pf"></h2>
+<h2 id= "Pf2"></h2>
+<input type = "text" id = "guess">
+<button onClick= "makeGuess()" id ="guessBtn" style= "display:none">Click to Guess</button>
+<button onClick= "playWildCard()" id ="WC" style= "display:none">Wild Card</button>
+<button onClick= "giveUp()" id ="GU" style= "display:none">Give Up!</button>
+<p id= "gamesWon">Games won: 0</p>
+<p id= "avgScore">Average score: 0</p>
+
+
+<h3>Leaderboard</h3>
+<div id= "Num">
+<ol>
+<li name="lb" id= "L1">
+<li name="lb" id= "L2">
+<li name="lb" id= "L3">
+</ol>
+</div>
+
+<script>
+
+
+showDate()
+var name = ""
+var leaderboard = []
+var level = 3
+var answer = Math.floor(Math.random()*level)+1
+var score = 0
+var gamesWon = 0
+var totalGuesses = 0
+
+document.getElementById("score").innerHTML = "Welcome to the Guesser Game V2!"
+
+
+function setLevel(){
+
+	var levels = document.getElementsByName("level")
+	for(var i = 0; i < levels.length; i++){
+	
+		if(levels[i].checked){
+		
+			level = levels[i].value
+		}
+	}
+	answer = Math.floor(Math.random()*level)+1
+	document.getElementById("guessBtn").style = "display:inline"
+	document.getElementById("score").innerHTML = "Guess a #1-" + level
+}
+function makeGuess(){
+
+	showDate()
+	document.getElementById("WC").style = "display:inline"
+	document.getElementById("GU").style = "display:inline"
+	document.getElementById("radioBtns").style = "display:none"
+	document.getElementById("Pf2").innerHTML= ""
+	var guess = document.getElementById("guess").value
+	score++;
+	
+		if(level == 10){
+			
+			if(guess < answer &&  Math.abs(guess - answer) <= 2){
+		
+			document.getElementById("score").innerHTML = guess +
+			" is too low, but your guess is extremely hot. Try again please. Guesses: " + score
+			
+			}else if((Math.abs(guess - answer) > 2) && (guess < answer &&  Math.abs(guess - answer) <= 4)){
+		
+			document.getElementById("score").innerHTML = guess +
+			" is too low, but your guess is warm. Try again please. Guess: " + score
+		
+			}else if(guess < answer){
+		
+			document.getElementById("score").innerHTML = guess +
+			" is too low, try again. Guesses: " + score
+			
+			}else if(guess > answer &&  Math.abs(guess - answer) <= 2){
+		
+			document.getElementById("score").innerHTML = guess +
+			" is too high, but your guess is extremely hot. Try again please. Guesses: " + score
+			
+			}else if((Math.abs(guess - answer) > 2) && (guess > answer &&  Math.abs(guess - answer) <= 4)){
+		
+			document.getElementById("score").innerHTML = guess +
+			" is too high, but your guess is warm. Try again please. Guess: " + score
+		
+			}else if(guess > answer){
+		
+			document.getElementById("score").innerHTML = guess +
+			" is too high, try again. Guesses: " + score
+			
+			}else{
+		
+			document.getElementById("score").innerHTML =
+			"You win! It took " + score + " tries."
+			gamesWon++
+			gameOver();
+			} 
+			
+		}else if(level == 100){
+		
+			if(guess < answer &&  Math.abs(guess - answer) <= 5){
+		
+			document.getElementById("score").innerHTML = guess +
+			" is too low, but your guess is extremely hot. Try again please. Guesses: " + score
+			
+			}else if((Math.abs(guess - answer) > 5) && (guess < answer &&  Math.abs(guess - answer) <= 15)){
+		
+			document.getElementById("score").innerHTML = guess +
+			" is too low, but your guess is warm. Try again please. Guess: " + score
+		
+			}else if(guess < answer){
+		
+			document.getElementById("score").innerHTML = guess +
+			" is too low, try again. Guesses: " + score
+			
+			}else if(guess > answer &&  Math.abs(guess - answer) <= 5){
+		
+			document.getElementById("score").innerHTML = guess +
+			" is too high, but your guess is extremely hot. Try again please. Guesses: " + score
+			
+			}else if((Math.abs(guess - answer) > 5) && (guess > answer &&  Math.abs(guess - answer) <= 15)){
+		
+			document.getElementById("score").innerHTML = guess +
+			" is too high, but your guess is warm. Try again please. Guess: " + score
+		
+			}else if(guess > answer){
+		
+			document.getElementById("score").innerHTML = guess +
+			" is too high, try again. Guesses: " + score
+			
+			}else{
+		
+			document.getElementById("score").innerHTML =
+			"You win! It took " + score + " tries."
+			gamesWon++
+			gameOver();
+			} 
+		
+		}else if(level == 1000){
+		
+			if(guess < answer &&  Math.abs(guess - answer) <= 10){
+		
+			document.getElementById("score").innerHTML = guess +
+			" is too low, but your guess is extremely hot. Try again please. Guesses: " + score
+			
+			}else if((Math.abs(guess - answer) > 10) && (guess < answer &&  Math.abs(guess - answer) <= 25)){
+		
+			document.getElementById("score").innerHTML = guess +
+			" is too low, but your guess is warm. Try again please. Guess: " + score
+		
+			}else if(guess < answer){
+		
+			document.getElementById("score").innerHTML = guess +
+			" is too low, try again. Guesses: " + score
+			
+			}else if(guess > answer &&  Math.abs(guess - answer) <= 10){
+		
+			document.getElementById("score").innerHTML = guess +
+			" is too high, but your guess is extremely hot. Try again please. Guesses: " + score
+			
+			}else if((Math.abs(guess - answer) > 10) && (guess > answer &&  Math.abs(guess - answer) <= 25)){
+		
+			document.getElementById("score").innerHTML = guess +
+			" is too high, but your guess is warm. Try again please. Guess: " + score
+		
+			}else if(guess > answer){
+		
+			document.getElementById("score").innerHTML = guess +
+			" is too high, try again. Guesses: " + score
+		
+			}else{
+		
+			document.getElementById("score").innerHTML =
+			"You win! It took " + score + " tries."
+			gamesWon++
+			gameOver();
+			} 
+		}
+	
+/*	if(guess < answer){
+	
+		document.getElementById("score").innerHTML = guess +
+		" is too low, try again. Guesses: " + score
+		
+	}else if(guess > answer){
+	
+		document.getElementById("score").innerHTML = guess +
+		" is too high, try again. Guess: " + score
+	}else{
+	
+		document.getElementById("score").innerHTML =
+		"You win! It took " + score + " tries."
+		gamesWon++
+		gameOver();
+	} 
+	if((level == 10 || level == 100 ||level == 1000) && guess == answer)*/
+}
+function gameOver(){
+
+	leaderboard.push(score)
+	leaderboard.sort((a, b) => a-b)
+	for(var i = 0; i< document.getElementsByName("lb").length; i++){
+		if(leaderboard[i] != null){
+		
+			document.getElementsByName("lb")[i].innerHTML = leaderboard[i]
+			//if(leaderboard)
+			//document.getElementById("score").innerHTML = "A new high score for the leaderboard!"
+		}
+		
+	}if(leaderboard[0] == score || leaderboard[1] == score || leaderboard[2] == score){
+	
+		document.getElementById("score").innerHTML = "You win! It took " + score + " tries. A new high score for the leaderboard!"
+		
+	}
+	
+	var rank = "Score Ranking:"
+	if (score <= 5){
+
+		document.getElementById("Pf2").innerHTML = rank + " S Tier (Amazing!)"
+	}else if (score > 5 && score <= 10){
+
+		document.getElementById("Pf2").innerHTML = rank + " A Tier (Great!)"
+	}else if (score > 10 && score <= 20){
+
+		document.getElementById("Pf2").innerHTML = rank + " B Tier (Good!)"
+	}else if (score > 20 && score <= 30){
+
+		document.getElementById("Pf2").innerHTML = rank + " C Tier (Ok)"
+	}else if (score > 30 && score <= 40){
+
+		document.getElementById("Pf2").innerHTML = rank + " D Tier (Decent)"
+	}else if (score > 40){
+
+		document.getElementById("Pf2").innerHTML = rank + " F Tier (Play again for a better score!)"
+	}
+	
+	document.getElementById("radioBtns").style = "display:inline"
+	totalGuesses += score
+	score = 0
+	answer = Math.floor(Math.random()*level)+1
+	document.getElementById("guess").value = ""
+	document.getElementById("gamesWon").innerHTML = "Games won: " + gamesWon
+	// https://www.w3schools.com/jsref/jsref_tofixed.asp
+	var AS = (totalGuesses/gamesWon)
+	document.getElementById("avgScore").innerHTML = "Average score: " + AS.toFixed(2)
+	
+	document.getElementById("guess").style = "display:hidden"
+	
+	
+	// look up how to round to x decimal places
+	//advanced guessing + valid guesses
+}
+function showDate(){
+	
+	var d = new Date()
+	var month = d.getMonth()+1
+	var day = d.getDate()
+	var year = d.getFullYear()
+	var hour = d.getHours()
+	var min = d.getMinutes()
+	var amPm = "A.M."
+	if(min<10){
+		min = "0" + min
+	}
+	if(hour>12){
+		hour -= 12 //hour = hour - 12
+		amPm = "P.M."
+	}
+	if(hour == 12){
+		amPm = "P.M."
+	}
+	if(hour == 0){
+		hour = 12
+	}
+	document.getElementById("dt").innerHTML = month + "/" + day + "/" + year
+	+ " | " + hour + ":" + min + " " + amPm
+}
+// https://www.w3resource.com/javascript-exercises/javascript-object-exercise-8.php
+function my_Clock(){
+
+  this.cur_date = new Date();
+  this.hours = this.cur_date.getHours();
+  this.minutes = this.cur_date.getMinutes();
+  this.seconds = this.cur_date.getSeconds();
+  }
+my_Clock.prototype.run = function ()
+  {
+  setInterval(this.update.bind(this), 1000);
+  };
+my_Clock.prototype.update = function () 
+  {
+  this.updateTime(1);
+ // console.log(this.hours + ":" + this.minutes + ":" + this.seconds);
+  document.getElementById("T").innerHTML = this.hours + ":" + this.minutes + ":" + this.seconds
+  };
+my_Clock.prototype.updateTime = function (secs) 
+  {
+  this.seconds+= secs;
+ if (this.seconds >= 60)
+  {
+  this.minutes++;
+  this.seconds= 0;
+  }
+ if (this.minutes >= 60)
+  {
+  this.hours++;
+  this.minutes=0;
+  }
+if (this.hours >= 24)
+  {
+  this.hours = 0;
+  }
+};
+var clock = new my_Clock();
+clock.run();
+  
+  // document.getElementById("T").innerHTML = hours + minutes + seconds
+
+function playWildCard(){
+
+	function wW(){
+	
+		score = 1
+		gameOver()
+		As = 1
+		document.getElementById("score").innerHTML = "Wild Card activated... You win! Score has been set to max."
+	}
+	function wL(){
+	https://www.javascripttutorial.net/array/4-ways-empty-javascript-array/
+		score = null
+		leaderboard.pop(0, 2)
+		gameOver()
+		As = "9999+"
+		document.getElementById("Pf2").innerHTML = "Score ranking: F Tier (Play again for a better score!)"
+		document.getElementById("score").innerHTML = "Wild Card activated... You lose! No score for this round."
+	}
+	function wN(){
+	
+		document.getElementById("score").innerHTML = "Sorry, the Wild Card is unavaliable at this time. Please try agin later."
+	}
+
+	var wV = Math.floor(Math.random()*3)
+	
+	if(wV == 0){
+		wW()
+	}else if(wV == 1){
+		wL()
+	}else if(wV == 2){
+		wN()
+	}
+	As = 0
+}
+function giveUp(){
+
+	score = level
+	gameOver()
+	document.getElementById("score").innerHTML = "That's a shame but OK! Your score is now the range."
+	document.getElementById("Pf2").innerHTML = "Play again soon!"
+	As = 0
+}
+  
+  
+</script>
+
+
+
+
+<div id= "radioBtns">
+<h3>Pick a Level:</h3>
+<input type= "radio" id= "easy" name= "level" value= "10" checked= "true">
+<label for= "easy">Easy</label>
+<input type= "radio" id= "medium" name= "level" value= "100">
+<label for= "medium">Medium</label>
+<input type= "radio" id= "hard" name= "level" value= "1000">
+<label for= "hard">Hard</label>
+<button onClick= "setLevel()">Play</button>
+</div>
+
+Click here to learn <a href= "https://www.youtube.com/watch?v=dQw4w9WgXcQ" target = "blank">The Ultimate Guesser Game Strategy!</a>
+
+</div>
+
+
+
+
+
+
+
+
