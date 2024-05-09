@@ -1,0 +1,315 @@
+<style>
+body{
+	background-color: cornflowerblue;
+	margin-left: 50px;
+	margin-right: 50px;
+	margin-bottom: 80px;
+	margin-top: 50px;
+}
+#box{
+	background-color: cornsilk;
+	text-align: center;
+	padding-bottom: 350px;
+	border: ridge blue 10px;
+}
+#Lead{
+	border: solid blue 5px;
+	width: 40%;
+	float: left;
+	padding-left: 20px;
+	margin-left: 20px;
+	text-align: center;
+}
+#Log{
+	border: solid black 5px;
+	width: 40%;
+	float: right;
+	margin-right: 20px;
+	text-align: center;
+}
+#Buttons{
+	margin-top: 30%;
+	margin-bottom: 20px;
+}
+</style>
+
+
+<script>
+
+var LB = []
+var inputLog = []
+var goalNumber = Math.floor(Math.random()*2000)+1
+var bNumber = 0
+var score = 0
+var gamesWon = 0
+var WLNA = Math.floor(Math.random()*3)+1
+
+
+
+function playGame(){
+
+	document.getElementById("One").style = "display:inline"
+	document.getElementById("Ten").style = "display:inline"
+	document.getElementById("Hun").style = "display:inline"
+	document.getElementById("Thou").style = "display:inline"
+	document.getElementById("BT").style = "display:inline"
+	document.getElementById("CN").style = "display:inline"
+	document.getElementById("PG").style = "display:none"
+	document.getElementById("header").innerHTML = "Make this number: " + goalNumber
+		
+		if(WLNA == 2){
+
+	document.getElementById("LUC").style = "display:inline"
+	}
+}
+function playAgain(){
+
+	bNumber = 0
+	score = 0
+	goalNumber = Math.floor(Math.random()*1000)+1
+	document.getElementById("header").innerHTML = "Make this number: " + goalNumber
+	document.getElementById("Current Number").innerHTML = bNumber
+	
+	
+	document.getElementById("One").style = "display:inline"
+	document.getElementById("Ten").style = "display:inline"
+	document.getElementById("Hun").style = "display:inline"
+	document.getElementById("Thou").style = "display:inline"
+	document.getElementById("BT").style = "display:inline"
+	document.getElementById("CN").style = "display:inline"
+	document.getElementById("PG").style = "display:none"
+	document.getElementById("PA").style = "display:none"
+	
+		if(WLNA == 2){
+
+	document.getElementById("LUC").style = "display:inline"
+	}
+}
+function backTrack(){
+
+	document.getElementById("-One").style = "display:inline"
+	document.getElementById("-Ten").style = "display:inline"
+	document.getElementById("-Hun").style = "display:inline"
+	document.getElementById("-Thou").style = "display:inline"
+	document.getElementById("BT").style = "display:none"
+
+}
+function changeNumber(){
+
+	bNumber = 0
+	score = 0
+	goalNumber = Math.floor(Math.random()*1000)+1
+	document.getElementById("header").innerHTML = "Make this number: " + goalNumber
+}
+function amLucky(){
+
+	var luckyNumber = Math.floor(Math.random()*3)+1
+	
+	if(luckyNumber == 1){
+	
+		document.getElementById("gamesWon").innerHTML = "Yes, you are very lucky!"
+		bNumber = goalNumber
+		score = 0
+		checkNum(bNumber)
+	}else if(luckyNumber == 2){
+	
+		document.getElementById("gamesWon").innerHTML = "No, you aren't lucky!"
+		bNumber = 3000
+		checkNum(bNumber)
+	}else if(luckyNumber == 3){
+	
+		document.getElementById("gamesWon").innerHTML = "I dunno man!"
+	}
+}
+
+
+function addOne(){
+
+	score++
+	bNumber = bNumber + 1
+	document.getElementById("Current Number").innerHTML = bNumber
+	checkNum(bNumber)
+	inputLog.push("+1")
+	updateIL()
+}
+function addTen(){
+
+	score++
+	bNumber = bNumber + 10
+	document.getElementById("Current Number").innerHTML = bNumber
+	checkNum(bNumber)
+	inputLog.push("+10")
+	updateIL()
+}
+function addHundred(){
+
+	score++
+	bNumber = bNumber + 100
+	document.getElementById("Current Number").innerHTML = bNumber
+	checkNum(bNumber)
+	inputLog.push("+100")
+	updateIL()
+}
+function addThousand(){
+
+	score++
+	bNumber = bNumber + 1000
+	document.getElementById("Current Number").innerHTML = bNumber
+	checkNum(bNumber)
+	inputLog.push("+1000")
+	updateIL()
+}
+function subtractOne(){
+
+	score++
+	bNumber = bNumber - 1
+	document.getElementById("Current Number").innerHTML = bNumber
+	checkNum(bNumber)
+	inputLog.push("-1")
+	updateIL()
+}
+function subtractTen(){
+
+	score++
+	bNumber = bNumber - 10
+	document.getElementById("Current Number").innerHTML = bNumber
+	checkNum(bNumber)
+	inputLog.push("-10")
+	updateIL()
+}
+function subtractHundred(){
+
+	score++
+	bNumber = bNumber - 100
+	document.getElementById("Current Number").innerHTML = bNumber
+	checkNum(bNumber)
+	inputLog.push("-100")
+	updateIL()
+}
+function subtractThousand(){
+
+	score++
+	bNumber = bNumber - 1000
+	document.getElementById("Current Number").innerHTML = bNumber
+	checkNum(bNumber)
+	inputLog.push("-1000")
+	updateIL()
+}
+
+
+function checkNum(CBN){
+	
+	
+	if(CBN == goalNumber){
+	
+		document.getElementById("header").innerHTML = "You Win! Total Score: " + score
+		LB.push(score)
+		
+	LB.sort((a, b) => a-b)
+	for(var i = 0; i< document.getElementsByName("lb").length; i++){
+		if(LB[i] != null){
+		
+			document.getElementsByName("lb")[i].innerHTML = LB[i]
+			}
+		}
+		gamesWon++
+		gameOver()
+	}
+	else if(CBN > goalNumber){
+
+	document.getElementById("header").innerHTML = "You Lose!"
+	document.getElementById("Current Number").innerHTML = "Sorry, " +bNumber + 
+	" is too large! Leaderboard has been cleared!"
+	document.getElementsByName("lb")[0].innerHTML = ""
+	document.getElementsByName("lb")[1].innerHTML = ""
+	document.getElementsByName("lb")[2].innerHTML = ""
+	document.getElementsByName("lb")[3].innerHTML = ""
+	document.getElementsByName("lb")[4].innerHTML = ""
+	gameOver();
+	}
+}
+
+function gameOver(){
+
+	inputLog = []
+	WLNA = Math.floor(Math.random()*3)+1
+	document.getElementById("gamesWon").style = "display:inline"
+	document.getElementById("gamesWon").innerHTML = "Games Won: " + gamesWon
+	document.getElementById("One").style = "display:none"
+	document.getElementById("Ten").style = "display:none"
+	document.getElementById("Hun").style = "display:none"
+	document.getElementById("Thou").style = "display:none"
+	document.getElementById("-One").style = "display:none"
+	document.getElementById("-Ten").style = "display:none"
+	document.getElementById("-Hun").style = "display:none"
+	document.getElementById("-Thou").style = "display:none"
+	document.getElementById("BT").style = "display:none"
+	document.getElementById("CN").style = "display:none"
+	document.getElementById("LUC").style = "display:none"
+	document.getElementById("PA").style = "display:inline"
+	
+}
+
+function updateIL(){
+
+	for(var i = 0; i< document.getElementsByName("il").length; i++){
+		if(inputLog[i] != null){
+		
+			document.getElementsByName("il")[i].innerHTML = inputLog[i]
+			}
+		}
+}
+
+</script>
+
+<div id= "box">
+<h1 id= "header">Welcome to Build-a-Number!</h1>
+<h1 id= "Current Number">Press play to begin building a number</h1>
+<h2 id= "gamesWon" style= "display:none">Games won: 0</h2>
+
+<div id= "Lead">
+<h3>Leaderboard</h3>
+<ol>
+<li name="lb">
+<li name="lb">
+<li name="lb">
+<li name="lb">
+<li name="lb">
+</ol>
+</div>
+
+<div id= "Log">
+<h3>Input Log</h3>
+<ul>
+<li name="il">
+<li name="il">
+<li name="il">
+<li name="il">
+<li name="il">
+<li name="il">
+<li name="il">
+<li name="il">
+<li name="il">
+<li name="il">
+</ul>
+</div>
+
+<div id= "Buttons">
+<button onClick= "playGame()" id ="PG">Play</button>
+<button onClick= "changeNumber()" id ="CN" style= "display:none">Change Number</button>
+<button onClick= "playAgain()" id ="PA" style= "display:none">Play Again?</button>
+<button onClick= "addOne()" id ="One" style= "display:none">+1</button>
+<button onClick= "addTen()" id ="Ten" style= "display:none">+10</button>
+<button onClick= "addHundred()" id ="Hun" style= "display:none">+100</button>
+<button onClick= "addThousand()" id ="Thou" style= "display:none">+1000</button>
+<button onClick= "backTrack()" id ="BT" style= "display:none">Back Track?</button>
+<button onClick= "subtractOne()" id ="-One" style= "display:none">-1</button>
+<button onClick= "subtractTen()" id ="-Ten" style= "display:none">-10</button>
+<button onClick= "subtractHundred()" id ="-Hun" style= "display:none">-100</button>
+<button onClick= "subtractThousand()" id ="-Thou" style= "display:none">-1000</button>
+<div>
+
+<button onClick= "amLucky()" id ="LUC" style= "display:none">Am I lucky?</button>
+
+</div>
+

@@ -1,0 +1,370 @@
+body{
+	
+	background-color: lightsteelblue;
+	color: #fff;
+	font-family: Verdana;
+	margin: 30px 30px;
+	line-height: 2.2em;
+
+}
+h1{
+	
+	text-align: center;
+	font-family: Georgia;
+	border: groove darkblue 10px;
+	background-color: lightsteelblue;
+	color: mediumblue;
+	padding: 20px;
+	width: 60%;
+	margin: auto;
+	font-size: 2.3em;
+	
+}h2{
+	
+	text-align: center;
+	color: #000;
+
+}h3{
+	
+	border-bottom: solid;
+	width: 10%;
+	padding-left: 20px;
+	color: #000;
+	
+}img{
+	
+	height: 200px;
+	margin-left: 15px;
+	float: right;
+	
+}p{
+	
+	color: #000;
+	background: #C3C3C3;
+	padding: 30px;
+	border: 5px solid midnightblue;
+	margin-left: 20;
+	
+	
+}a:link{
+	
+	color: #000;
+	font-weight: 700;
+	text-decoration: none;
+	
+}a:visited{
+	
+	color: navy;
+	text-decoration: line-through;
+	
+}a:hover{
+	
+	color: dodgerblue;
+	text-decoration: underline;
+	
+}a:active:{
+	
+	color: orange;
+}#i1{
+	
+	height: 400px;
+	float: left;
+	margin: 0px 30px 10px 0px;
+	border: 2.5px solid midnightblue;
+	
+}#i2{
+	border: 2.5px solid midnightblue;
+	margin: 10px 0 0 30px;
+	
+}#i3{
+	border: 2.5px solid midnightblue;
+	margin: 0px 0px 15px 30px;
+	
+}.highlight{
+	
+	background-color: deepskyblue;
+	color: #000;
+	font-weight: 600;
+	padding: 5px;
+	
+}#container{
+	
+	width: 1400px;
+	margin: auto;
+	background-color: whitesmoke;
+	padding-top: 40px;
+	padding-bottom: 40px;
+	border: 10px solid #3A405A;
+	
+}#brown{
+	
+	background-color: dimgray;
+	color: ghostwhite;
+	width: 350px;
+	height: 1200px;
+	float: right;
+	border: solid midnightblue 5px;
+/*	margin-left: 30px;
+	margin-right: 30px;
+	margin-top: 55px; */
+	margin: auto 30px;
+	padding: 20px;
+
+}.thin{
+	
+	width: 60%; */
+}#P3{
+	
+	margin: 20px;
+	
+}#ST{
+	
+	border: solid;
+	padding: auto;
+	margin: auto;
+	color: ghostwhite;
+	
+}#a1{
+	
+	text-decoration: underline;
+}#a2{
+	
+	text-decoration: underline;
+}#a3{
+	
+	text-decoration: underline;
+}#a4{
+	
+	text-decoration: underline;
+}#a5{
+	
+	text-decoration: underline;
+}
+	
+@media (max-width:1400px){
+	
+	body{
+		background-color: lightgray;
+		
+	}#container{
+		width: 1100px;
+		
+	}#brown{
+		
+		border: none;
+		width: 245px;
+		height: auto;
+		margin-right: 15px;
+		margin-left: 20px;
+		
+	}.thin{
+		
+		width: 63%;
+	}h3{
+		
+
+	}
+}@media (max-width:1200px){
+	
+	body{
+		
+		background-color: black;
+		
+	}#container{
+		
+		width: 1000px;
+		
+	}#brown{
+		
+		width: 215px;
+		padding-right: 20px;
+		margin-right: 10px;
+	}#AM{
+		
+		padding-left: 15px;
+		width: 12%;
+	}
+}@media (max-width:1100px){
+	
+	body{
+		
+		background-color: seagreen;
+		
+	}#container{
+		
+		width: 900px;
+		
+	}#brown{
+		
+		width: 210px;
+		padding-right: 20px;
+		margin-right: 5px;
+		margin-left: 0px;
+		height: 1855px;
+		background-color: whitesmoke;
+		color: black;
+		border: solid midnightblue 5px;
+		
+	}#ST{
+		
+		color: black;
+	}.thin{
+		
+		margin-left: 5px;
+	}
+}@media (max-width:970px){
+	
+	body{
+		
+		background-color: darkorange;
+		
+	}#container{
+		
+		width: 650px;
+		
+	}#AM{
+		
+		padding-left: 15px;
+		width: 20%;
+	}#Hob{
+		
+		width: 15%;
+	}#Fam{
+		
+		width: 15%
+	}#brown{
+		
+	/*	width: 150px;
+		padding-right: 20px;
+		margin-right: 5px;
+		margin-left: 0px;
+		height: 1855px;
+		background-color: whitesmoke;
+		color: black;
+		border: solid midnightblue 5px; */
+		display: none;
+	}.thin{
+		
+		margin-left: 20px;
+		margin-right: 20px;
+		width: 83%;
+	}
+}@media (max-width:750px){
+	
+	body{
+		
+		background-color: teal;
+		
+	}h1, h2, h3, p, img, #container{
+		
+		border: none;
+		background-color: lightsteelblue;
+		
+	}#brown{
+		
+		display: none;
+		
+	}#container, .thin, p, body{
+		
+		width: 100%;
+		padding: 0;
+		margin: 0;
+	}#container{
+		
+		padding-right: 10px;
+		padding-left: 10px;
+		width: auto;
+	}h1{
+		font-size: 1.5em;
+	}h2{
+		font-size: 1.1em;
+	}img{
+		border: midnightblue;
+	}#i1{
+		height: 250px;
+		margin-bottom: 10px;
+	}#i2{
+		height: 150px;
+		margin-left: 15px;
+		margin-bottom: 10px;
+	}#i3{
+		height: 150px;
+	}.thin{
+		width: 95%;
+		margin-right: 20px;
+		margin-left: 20px;
+	}P{
+		width: 95%;
+		margin-right: 20px;
+	}body{
+		
+		margin-top: 20px;
+	}h3{
+		
+		text-decoration: underline;
+	}
+}@media print{
+	
+	img, #brown{
+		
+		display: none;
+	}h1, h2, h3, p{
+		
+		font-family: times;
+		color: black;
+		border: none;
+		
+	}.thin{
+		
+		width: auto;
+	}p{
+		
+		line-height: 2em;
+		font-size: 12pt;
+	}h3{
+		
+		text-decoration: underline;
+	}
+}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
