@@ -2,6 +2,7 @@ import pandas as pd
 import matplotlib
 import matplotlib.pyplot as plt
 
+# works with "car_info.csv" to display data visually in bar and pie graphs 
 
 cars = pd.read_csv("car_info.csv")
 print('#1- Shape of DataFrame:')
